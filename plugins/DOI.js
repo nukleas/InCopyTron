@@ -84,7 +84,7 @@ InCopyTron.Plugins.DOI = {
         while (response.match('1.1 30[123]') && redirects < 10) {
             redirect_url = response.match('(?:Location: )(.*?)\n')[1];
             redirect_url = redirect_url.split('/');
-            this.makeRequest(redirect_url[2], redirect_url[3], 'application/unixref+xml');
+            request = this.makeRequest(redirect_url[2], decodeURI(redirect_url.slice(3).join("/")), 'application/unixref+xml');
             socket.open(redirect_url[2] + ':80');
             socket.write(request);
             response = socket.read(9999999999);
@@ -209,7 +209,9 @@ InCopyTron.Plugins.DOI = {
         DOI_context_statictext.preferredSize = [600, 150];
         DOI_applyHyperlinkButton = DOI_contextpanel.add('button', undefined, "Apply Hyperlink");
         DOI_applyHyperlinkButton.onClick = function () {
-            InCopyTron.Hyperlinking.makeHyperlink(InCopyTron.Plugins.DOI.current_DOIs[DOI_listbox.selection], InCopyTron.GUI.Window.findElement('DOI_edittext').text);
+            app.doScript(function(){
+                InCopyTron.Hyperlinking.makeHyperlink(InCopyTron.Plugins.DOI.current_DOIs[DOI_listbox.selection], InCopyTron.GUI.Window.findElement('DOI_edittext').text.replace(/[\n\r]/g,""));
+                }, ScriptLanguage.JAVASCRIPT, undefined, UndoModes.ENTIRE_SCRIPT);
             this.enabled = false;
         };
         DOI_listbox.onChange = function () {

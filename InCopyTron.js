@@ -1,12 +1,12 @@
 // InCopyTron
 // A document analysis tool to help blur the lines between InCopy and K4.
-// By Nader Heidari
+// By Nader Heidari and Craig Bettenhausen (Contributor)
 //
 
-#targetengine InCopyTron;
-#strict on;
-#include ./includes/incopytron_core.js;
-#include ./includes/debug.js;
+// @targetengine InCopyTron;
+
+// @include ./includes/incopytron_core.js;
+// @include ./includes/debug.js;
 
 /*
     NOTE:
@@ -71,7 +71,7 @@ InCopyTron.GUI.Window.onActivate = function () {
     Oh, because Adobe is too cool to fix a known bug for CS5, instead fixing it for CS5.5 and above.
     So this workaround makes it so you can use tabbed panels without them breaking when another dialog appears.
     */
-        if (InCopyTron.GUI.Window.children && InCopyTron.GUI.active_tab){
+        if (InCopyTron && InCopyTron.GUI.Window.children && InCopyTron.GUI.active_tab){
             try {
                 InCopyTron.GUI.Window.children[0].selection = InCopyTron.GUI.active_tab;
                 } catch (error) {

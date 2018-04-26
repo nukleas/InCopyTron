@@ -10,7 +10,7 @@
         about_title = about_panel.add('statictext', undefined, "InCopyTron");
         about_title.graphics.font = "dialog:24";
         about_text = about_panel.add('statictext', undefined, "", {multiline: true, justify: 'center'});
-        about_text.text = "A set of (hopefully) useful scripts for InCopy/InDesign and K4\n\nBy Nader Heidari";
+        about_text.text = "A set of (hopefully) useful scripts for InCopy/InDesign and K4\n\nBy Nader Heidari\n\nWritten for C&&EN\n\n";
         about_text.graphics.font = "dialog:18";
         about_text.orientation = "column";
         about_text.alignment = "fill";
